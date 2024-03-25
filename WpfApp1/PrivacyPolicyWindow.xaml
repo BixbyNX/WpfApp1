@@ -1,0 +1,26 @@
+﻿<Window x:Class="WpfApp1.PrivacyPolicyWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="PrivacyPolicyWindow" Height="450" Width="800" WindowStyle="None" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0,0">
+                <GradientStop Color="#FF836953" Offset="0.031"/>
+                <GradientStop Color="#FFF8F7DD" Offset="0.925"/>
+                <GradientStop Color="#FFBDB098" Offset="0.512"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Label Content="Privacy Policy" HorizontalAlignment="Center" VerticalAlignment="Top" Height="91" Width="400" FontSize="45" FontWeight="Bold" HorizontalContentAlignment="Center" Foreground="#FF242424"/>
+        <Button x:Name="btnAgree" Content="I Agree" HorizontalAlignment="Left" Margin="690,400,0,0" VerticalAlignment="Top" Height="40" Width="100" FontWeight="Bold" FontSize="15" Cursor="Hand" BorderThickness="0,0,0,0" Foreground="White" Click="btnRegister_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="/agree.png"/>
+            </Button.Background>
+        </Button>
+        <ScrollViewer Margin="92,80,92,70" Width="615" Height="300" Background="#FFEAE4D9"/>
+
+    </Grid>
+</Window>
