@@ -1,25 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using MySql.Data.MySqlClient;
 using System.Windows.Threading;
-using System.Threading;
+using WebSocketSharp;
+using System.Net;
+using static WpfApp1.AuthServer;
+
 
 namespace WpfApp1
 {
+
+ 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -30,8 +21,7 @@ namespace WpfApp1
         private TimeSpan remainingTime = TimeSpan.FromMinutes(1);
         private int attempt = 0;
         private int countAttmpt = 0;
-        private int duration = 10;
-
+        private WebSocket ws;
         public MainWindow()
         {
             InitializeComponent();
@@ -41,65 +31,57 @@ namespace WpfApp1
             txtinvalid.Visibility = Visibility.Hidden;
             txtTimerpass.Visibility = Visibility.Hidden;
             txtMsgErr.Visibility = Visibility.Hidden;
+            warning.Visibility = Visibility.Hidden;
+            warningMessage.Visibility = Visibility.Hidden;
 
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += Timer_Tick;
         }
-        private void btnLogIn_Click(object sender, RoutedEventArgs e)
+        private async void btnLogIn_Click(object sender, RoutedEventArgs e)
         {
-            string connstring = "server=localhost; uid=root; pwd=; database=chatifyz";
-            MySqlConnection con = new MySqlConnection(connstring);
-
             try
             {
-                con.Open();
-
                 string serialNumber = txtboxusername.Text;
                 string inputPassword = passbox.Password;
 
-                string query = "SELECT COUNT(*) FROM users WHERE serial_ID_No = @serialNumber AND Password = @password";
-                MySqlCommand cmd = new MySqlCommand(query, con);
-                cmd.Parameters.AddWithValue("@serialNumber", serialNumber);
-                cmd.Parameters.AddWithValue("@password", inputPassword);
+                AuthServer server = new AuthServer();
+                LoginResponse response = await server.Login(serialNumber, inputPassword);
 
-                int count = Convert.ToInt32(cmd.ExecuteScalar());
-
-                if (count > 0)
+                Console.WriteLine($"Response Status Code: {response.StatusCode}");
+                if (response.StatusCode == HttpStatusCode.OK)
                 {
-                    MessagingWindow window = new MessagingWindow();
+                    MessageDashboard window = new MessageDashboard();
                     this.Visibility = Visibility.Hidden;
                     window.Show();
+                    //tama credentials
                 }
-                else if (txtboxusername.Text == " " || passbox.Password == "")
-                {
-                    txtMsgErr.Visibility = Visibility.Visible;
-                    txtinvalid.Visibility = Visibility.Hidden;
-                    txtboxusername.Clear();
-                    passbox.Clear(); 
-                    ErrAttmpt();
-                }
-                else
+                else if (response.StatusCode == HttpStatusCode.NotFound)
                 {
                     passbox.Clear();
+                    warning.Visibility = Visibility.Visible;
                     btnForgot.Visibility = Visibility.Visible;
                     txtinvalid.Visibility = Visibility.Visible;
                     txtMsgErr.Visibility = Visibility.Hidden;
                     attempt++;
                     ErrAttmpt();
                 }
+                else if (txtboxusername.Text == "" || passbox.Password == "")
+                {
+                    txtMsgErr.Visibility = Visibility.Visible;
+                    txtinvalid.Visibility = Visibility.Hidden;
+                    txtboxusername.Clear();
+                    passbox.Clear();
+                    ErrAttmpt();
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            finally
-            {
-                con.Close();
+                MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
-        private void StartCountdown()
+            private void StartCountdown()
         {
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
@@ -184,6 +166,26 @@ namespace WpfApp1
         private void btnForgotNo_Click(object sender, RoutedEventArgs e)
         {
             forgotTAB.Visibility = Visibility.Hidden;
+        }
+
+        private void warning_MouseEnter(object sender, MouseEventArgs e)
+        {
+            warningMessage.Visibility = Visibility.Visible; 
+        }
+
+        private void warning_MouseLeave(object sender, MouseEventArgs e)
+        {
+            warningMessage.Visibility = Visibility.Hidden;
+        }
+
+        private void toggleButton_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ToggleButton_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

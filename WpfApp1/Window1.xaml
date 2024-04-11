@@ -5,19 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="Window1" Height="720" Width="1280" WindowStyle="None" WindowStartupLocation="CenterScreen">
+        Title="Window1" Height="720" Width="1280" WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Window.Background>
-        <ImageBrush ImageSource="/loginbackzxc.png"/>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0,0">
+            <GradientStop Color="#FF836953"/>
+            <GradientStop Color="#FFBDB098" Offset="1"/>
+        </LinearGradientBrush>
     </Window.Background>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Image HorizontalAlignment="Left" Height="704" VerticalAlignment="Center" Width="546" Source="/shet.png">
+        <Image HorizontalAlignment="Left" Height="720" VerticalAlignment="Center" Width="560" Source="/LOWGOW.png">
             <Image.Effect>
                 <DropShadowEffect/>
             </Image.Effect>
         </Image>
+        <Image HorizontalAlignment="Left" Height="218" Margin="150,87,0,0" VerticalAlignment="Top" Width="218" Source="/final.png"/>
         <Label Content="REGISTRATION" HorizontalAlignment="Left" Margin="630,49,0,0" VerticalAlignment="Top" Height="112" Width="568" FontSize="75" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="#FF242424"/>
         <Label Content="FULL NAME" HorizontalAlignment="Left" Margin="640,183,0,0" VerticalAlignment="Top" Height="36" Width="121" FontSize="20" FontWeight="Bold"/>
         <Label Content="EMAIL ADDRESS" HorizontalAlignment="Left" Margin="927,182,0,0" VerticalAlignment="Top" Height="36" Width="166" FontSize="20" FontWeight="Bold"/>
@@ -27,58 +31,53 @@
             </Button.Background>
         </Button>
         <Label Content="PASSWORD" HorizontalAlignment="Left" Margin="640,502,0,0" VerticalAlignment="Top" Height="36" Width="166" FontSize="20" FontWeight="Bold"/>
-        <TextBox x:Name="fname" HorizontalAlignment="Left" Margin="640,219,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" Height="45" BorderThickness="0,0,0,0" FontSize="20" Padding="8,7,0,0">
-            <TextBox.Background>
-                <ImageBrush ImageSource="/tupipti.png"/>
-            </TextBox.Background>
-        </TextBox>
-        <TextBox x:Name="emailadd" HorizontalAlignment="Left" Margin="927,218,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" Height="45" BorderThickness="0,0,0,0" FontSize="20" Padding="8,7,0,0">
-            <TextBox.Background>
-                <ImageBrush ImageSource="/tupipti.png"/>
-            </TextBox.Background>
-        </TextBox>
         <Label Content="ENCRYPTALK" HorizontalAlignment="Left" Margin="59,281,0,0" VerticalAlignment="Top" Height="112" Width="399" FontSize="55" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="#FF242424"/>
-        <TextBox x:Name="serialIDNo" HorizontalAlignment="Left" Margin="927,428,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" Height="45" BorderThickness="0,0,0,0" FontSize="20" Padding="8,7,0,0">
-            <TextBox.Background>
-                <ImageBrush ImageSource="/tupipti.png"/>
-            </TextBox.Background>
-        </TextBox>
-        <TextBox x:Name="contact" HorizontalAlignment="Left" Margin="640,428,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" Height="45" BorderThickness="0,0,0,0" FontSize="20" Padding="8,7,0,0">
-            <TextBox.Background>
-                <ImageBrush ImageSource="/tupipti.png"/>
-            </TextBox.Background>
-        </TextBox>
         <Label Content="BRANCH OF SERVICE" HorizontalAlignment="Left" Margin="640,287,0,0" VerticalAlignment="Top" Height="36" Width="294" FontSize="20" FontWeight="Bold"/>
         <Label Content="PERSONNEL TYPE" HorizontalAlignment="Left" Margin="927,287,0,0" VerticalAlignment="Top" Height="36" Width="294" FontSize="20" FontWeight="Bold"/>
         <Label Content="CONTACT NO." HorizontalAlignment="Left" Margin="640,392,0,0" VerticalAlignment="Top" Height="36" Width="294" FontSize="20" FontWeight="Bold"/>
         <Label Content="SERIAL / ID NO." HorizontalAlignment="Left" Margin="927,392,0,0" VerticalAlignment="Top" Height="36" Width="294" FontSize="20" FontWeight="Bold"/>
         <Button x:Name="btnPrivacyPolicy" Content="Privacy Policy" HorizontalAlignment="Left" Margin="859,671,0,0" VerticalAlignment="Top" Width="110" Click="btnPrivacyPolicy_Click" FontSize="15" FontWeight="Bold" BorderThickness="0,0,0,0" Background="{x:Null}"/>
-        <PasswordBox x:Name="passwordb" HorizontalAlignment="Left" Margin="640,538,0,0" VerticalAlignment="Top" Width="250" Height="44" BorderThickness="0,0,0,0" FontSize="20" Padding="8,7,0,0">
-            <PasswordBox.Background>
-                <ImageBrush ImageSource="/tupipti.png"/>
-            </PasswordBox.Background>
-        </PasswordBox>
-        <Image HorizontalAlignment="Left" Height="45" Margin="640,347,0,0" VerticalAlignment="Top" Width="250">
-            <Image.OpacityMask>
-                <ImageBrush ImageSource="/tupipti.png"/>
-            </Image.OpacityMask>
-        </Image>
-        <TextBox x:Name="branch" HorizontalAlignment="Left" Margin="640,326,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" Height="44" BorderThickness="0,0,0,0" FontSize="20" Padding="8,7,0,0">
-            <TextBox.Background>
-                <ImageBrush ImageSource="/tupipti.png"/>
-            </TextBox.Background>
-        </TextBox>
-        <TextBox x:Name="personneltype" HorizontalAlignment="Left" Margin="927,326,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" Height="44" BorderThickness="0,0,0,0" FontSize="20" Padding="8,7,0,0">
-            <TextBox.Background>
-                <ImageBrush ImageSource="/tupipti.png"/>
-            </TextBox.Background>
-        </TextBox>
-        <PasswordBox x:Name="confirmpass" HorizontalAlignment="Left" Margin="927,536,0,0" VerticalAlignment="Top" Width="250" Height="44" BorderThickness="0,0,0,0" FontSize="20" Padding="8,7,0,0">
-            <PasswordBox.Background>
-                <ImageBrush ImageSource="/tupipti.png"/>
-            </PasswordBox.Background>
-        </PasswordBox>
         <Label Content="CONFIRM PASSWORD" HorizontalAlignment="Left" Margin="927,500,0,0" VerticalAlignment="Top" Height="36" Width="220" FontSize="20" FontWeight="Bold"/>
+        <TextBox x:Name="fname" HorizontalAlignment="Left" Margin="638,219,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" Height="41" BorderThickness="0,0,0,0" FontSize="20" Padding="8,7,0,0">
+            <TextBox.Background>
+                <ImageBrush ImageSource="/tupipti.png"/>
+            </TextBox.Background>
+        </TextBox>
+        <TextBox x:Name="emailadd" HorizontalAlignment="Left" Margin="925,219,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" Height="41" BorderThickness="0,0,0,0" FontSize="20" Padding="8,7,0,0">
+            <TextBox.Background>
+                <ImageBrush ImageSource="/tupipti.png"/>
+            </TextBox.Background>
+        </TextBox>
+        <TextBox x:Name="branch" HorizontalAlignment="Left" Margin="638,323,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" Height="41" BorderThickness="0,0,0,0" FontSize="20" Padding="8,7,0,0">
+            <TextBox.Background>
+                <ImageBrush ImageSource="/tupipti.png"/>
+            </TextBox.Background>
+        </TextBox>
+        <TextBox x:Name="personneltype" HorizontalAlignment="Left" Margin="925,323,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" Height="41" BorderThickness="0,0,0,0" FontSize="20" Padding="8,7,0,0">
+            <TextBox.Background>
+                <ImageBrush ImageSource="/tupipti.png"/>
+            </TextBox.Background>
+        </TextBox>
+        <TextBox x:Name="contact" HorizontalAlignment="Left" Margin="638,428,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" Height="41" BorderThickness="0,0,0,0" FontSize="20" Padding="8,7,0,0">
+            <TextBox.Background>
+                <ImageBrush ImageSource="/tupipti.png"/>
+            </TextBox.Background>
+        </TextBox>
+        <TextBox x:Name="serialIDNo" HorizontalAlignment="Left" Margin="925,428,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" Height="41" BorderThickness="0,0,0,0" FontSize="20" Padding="8,7,0,0">
+            <TextBox.Background>
+                <ImageBrush ImageSource="/tupipti.png"/>
+            </TextBox.Background>
+        </TextBox>
+        <PasswordBox x:Name="passwordb" HorizontalAlignment="Left" Margin="638,538,0,0" VerticalAlignment="Top" Width="250" Height="45" BorderThickness="0,0,0,0" FontSize="20" Padding="8,7,0,0">
+            <PasswordBox.Background>
+                <ImageBrush ImageSource="/tupipti.png"/>
+            </PasswordBox.Background>
+        </PasswordBox>
+        <PasswordBox x:Name="confirmpass" HorizontalAlignment="Left" Margin="925,538,0,0" VerticalAlignment="Top" Width="250" Height="45" BorderThickness="0,0,0,0" FontSize="20" Padding="8,7,0,0">
+            <PasswordBox.Background>
+                <ImageBrush ImageSource="/tupipti.png"/>
+            </PasswordBox.Background>
+        </PasswordBox>
         <Canvas x:Name="verificationTAB" Margin="240,160,240,160" Width="800" Height="400" d:IsHidden="True">
             <Canvas.Background>
                 <ImageBrush ImageSource="/tabzxc.png"/>
@@ -89,18 +88,22 @@
                 </Button.Background>
             </Button>
             <Label Content="We've sent your code to:" Height="112" Width="658" FontSize="45" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="#FF242424" HorizontalAlignment="Center" Canvas.Left="71" Canvas.Top="37" VerticalAlignment="Top"/>
-            <TextBox x:Name="otpverify" TextWrapping="Wrap" Width="270" Height="70" BorderThickness="0,0,0,0" FontSize="50" TextAlignment="Center" FontWeight="Bold" HorizontalAlignment="Center" Canvas.Left="265" Canvas.Top="234" VerticalAlignment="Top" Cursor="None">
+            <TextBox x:Name="otpverify" TextWrapping="Wrap" Width="270" Height="70" BorderThickness="0,0,0,0" FontSize="50" TextAlignment="Center" FontWeight="Bold" HorizontalAlignment="Center" Canvas.Left="265" Canvas.Top="234" VerticalAlignment="Top" Cursor="IBeam">
                 <TextBox.Background>
                     <ImageBrush ImageSource="/otpp.png"/>
                 </TextBox.Background>
             </TextBox>
             <TextBox x:Name="emailShow" Canvas.Left="84" TextWrapping="Wrap" Canvas.Top="136" Width="632" FontSize="45" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top" BorderThickness="0,0,0,0" Background="{x:Null}" TextAlignment="Center" Foreground="#FF242424" IsEnabled="False"/>
         </Canvas>
-        <Button Content="" HorizontalAlignment="Left" Margin="556,23,0,0" VerticalAlignment="Top" Height="40" Width="40" BorderThickness="0,0,0,0" Foreground="White" FontSize="15" FontWeight="Bold" Click="Button_Click">
+        <Button Content="" HorizontalAlignment="Left" Margin="572,32,0,0" VerticalAlignment="Top" Height="40" Width="40" BorderThickness="0,0,0,0" Foreground="White" FontSize="15" FontWeight="Bold" Click="Button_Click" RenderTransformOrigin="0.55,-0.075">
             <Button.Background>
-                <ImageBrush ImageSource="/back.png"/>
+                <ImageBrush ImageSource="/backbut.png"/>
             </Button.Background>
         </Button>
+        <Label x:Name="notMatch" Content="Passwords do not match!" HorizontalAlignment="Left" Margin="936,583,0,0" VerticalAlignment="Top" Height="28" Width="232" FontSize="15" Foreground="#FFED4337"/>
+        <Label x:Name="inputpass" Content="Input your password." HorizontalAlignment="Left" Margin="648,582,0,0" VerticalAlignment="Top" Height="28" Width="234" FontSize="15" Foreground="#FFED4337"/>
+        <Label x:Name="inputconfirm" Content="Confirm your password." HorizontalAlignment="Left" Margin="936,583,0,0" VerticalAlignment="Top" Height="28" Width="234" FontSize="15" Foreground="#FFED4337"/>
+        <Label x:Name="incomplete" Content="The information you entered is incomplete or invalid." HorizontalAlignment="Left" Margin="648,582,0,0" VerticalAlignment="Top" Height="33" Width="362" FontSize="15" Foreground="#FFED4337"/>
 
     </Grid>
 </Window>

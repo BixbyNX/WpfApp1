@@ -5,43 +5,37 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="720" Width="1280" WindowStartupLocation="CenterScreen" WindowStyle="None">
-    <Window.Background>
-        <ImageBrush ImageSource="/loginbackzxc.png"/>
-    </Window.Background>
+        Title="MainWindow" Height="720" Width="1280" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize" Background="#FFF0ECD4">
     <Grid x:Name="LogInWindow" Width="1280">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Image HorizontalAlignment="Left" Height="704" VerticalAlignment="Center" Width="540" Source="/shet.png">
+        <Image HorizontalAlignment="Left" Height="704" VerticalAlignment="Top" Width="540">
             <Image.Effect>
                 <DropShadowEffect/>
             </Image.Effect>
         </Image>
-        <Label Content="LOG IN" HorizontalAlignment="Left" Margin="640,126,0,0" VerticalAlignment="Top" Height="112" Width="271" FontSize="75" FontWeight="Bold" Foreground="#FF242424"/>
-        <Label Content="USERNAME" HorizontalAlignment="Left" Margin="656,280,0,0" VerticalAlignment="Top" Height="36" Width="121" FontSize="20" FontWeight="Bold"/>
-        <Label Content="PASSWORD" HorizontalAlignment="Left" Margin="656,370,0,0" VerticalAlignment="Top" Height="36" Width="121" FontSize="20" FontWeight="Bold"/>
-        <TextBox x:Name="txtboxusername" HorizontalAlignment="Left" Margin="640,316,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="330" Height="45" FontSize="20" BorderThickness="0,0,0,0" Padding="8,7,0,0">
+        <Image HorizontalAlignment="Left" Height="218" Margin="490,28,0,0" VerticalAlignment="Top" Width="250" Source="/final.png"/>
+        <Label Content="LOG IN" HorizontalAlignment="Center" Margin="0,248,0,0" VerticalAlignment="Top" Height="112" Width="272" FontSize="75" FontWeight="Bold" Foreground="#FF242424"/>
+        <Label Content="USERNAME" HorizontalAlignment="Left" Margin="490,395,0,0" VerticalAlignment="Top" Height="36" Width="121" FontSize="20" FontWeight="Bold"/>
+        <Label Content="PASSWORD" HorizontalAlignment="Left" Margin="490,485,0,0" VerticalAlignment="Top" Height="36" Width="121" FontSize="20" FontWeight="Bold"/>
+        <TextBox x:Name="txtboxusername" HorizontalAlignment="Center" Margin="0,431,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="330" Height="45" FontSize="20" BorderThickness="0,0,0,0" Padding="8,7,0,0">
             <TextBox.Background>
                 <ImageBrush ImageSource="/txtb.png"/>
             </TextBox.Background>
         </TextBox>
-        <PasswordBox x:Name="passbox" HorizontalAlignment="Left" Margin="641,406,0,0" VerticalAlignment="Top" Width="330" Height="45" BorderThickness="0,0,0,0" FontSize="20" Padding="8,7,0,0">
-            <PasswordBox.Background>
-                <ImageBrush ImageSource="/txtb.png"/>
-            </PasswordBox.Background>
-        </PasswordBox>
-        <Button x:Name="btnLogIn" Content="LOG IN" HorizontalAlignment="Left" Margin="716,494,0,0" VerticalAlignment="Top" Height="40" Width="180" FontWeight="Bold" FontSize="15" Cursor="Hand" BorderThickness="0,0,0,0" Foreground="White" Click="btnLogIn_Click">
+        <PasswordBox x:Name="passbox" HorizontalAlignment="Center" Margin="0,521,0,0" VerticalAlignment="Top" Width="330" Height="45" BorderThickness="0,0,0,0" FontSize="20" Padding="8,7,0,0" Background="Black"/>
+        <Button x:Name="btnLogIn" Content="LOG IN" HorizontalAlignment="Center" Margin="0,609,0,0" VerticalAlignment="Top" Height="40" Width="180" FontWeight="Bold" FontSize="15" Cursor="Hand" BorderThickness="0,0,0,0" Foreground="White" Click="btnLogIn_Click">
             <Button.Background>
                 <ImageBrush ImageSource="/buttonzxc.png"/>
             </Button.Background>
         </Button>
         <Label Content="ENCRYPTALK" HorizontalAlignment="Left" Margin="59,281,0,0" VerticalAlignment="Top" Height="112" Width="399" FontSize="55" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="#FF242424"/>
-        <Button x:Name="btnRegister" Content="Register" HorizontalAlignment="Left" Margin="769,546,0,0" VerticalAlignment="Top" Width="72" Click="btnRegister_Click" FontSize="15" FontWeight="Bold" BorderThickness="0,0,0,0" Background="{x:Null}"/>
-        <Button x:Name="btnForgot" Content="Forgot Password" HorizontalAlignment="Left" Margin="846,417,0,0" VerticalAlignment="Top" Width="122" Click="btnForgot_Click" FontSize="15" BorderThickness="0,0,0,0" Background="{x:Null}" Foreground="#BF000000"/>
-        <Label x:Name="txtinvalid" Content="Invalid serial number or password." HorizontalAlignment="Left" Margin="654,451,0,0" VerticalAlignment="Top" Height="28" Width="242" FontSize="15" Foreground="#FFED4337"/>
-        <Label x:Name="txtTimerpass" Content="Login blocked, time remaining:" HorizontalAlignment="Left" Margin="654,451,0,0" VerticalAlignment="Top" Height="28" Width="286" FontSize="15" Foreground="#FFED4337"/>
-        <Label x:Name="txtMsgErr" Content="Input Username or Password." HorizontalAlignment="Left" Margin="654,451,0,0" VerticalAlignment="Top" Height="28" Width="286" FontSize="15" Foreground="#FFED4337"/>
+        <Button x:Name="btnRegister" Content="Register" HorizontalAlignment="Center" Margin="0,661,0,0" VerticalAlignment="Top" Width="72" Click="btnRegister_Click" FontSize="15" FontWeight="Bold" BorderThickness="0,0,0,0" Background="{x:Null}"/>
+        <Button x:Name="btnForgot" Content="Forgot Password" HorizontalAlignment="Left" Margin="675,494,0,0" VerticalAlignment="Top" Width="122" Click="btnForgot_Click" FontSize="15" BorderThickness="0,0,0,0" Background="{x:Null}" Foreground="#BF000000"/>
+        <Label x:Name="txtinvalid" Content="Invalid serial number or password." HorizontalAlignment="Left" Margin="488,566,0,0" VerticalAlignment="Top" Height="28" Width="242" FontSize="15" Foreground="#FFED4337"/>
+        <Label x:Name="txtTimerpass" Content="Login blocked, time remaining:" HorizontalAlignment="Left" Margin="488,566,0,0" VerticalAlignment="Top" Height="38" Width="286" FontSize="15" Foreground="#FFED4337"/>
+        <Label x:Name="txtMsgErr" Content="Input Username or Password." HorizontalAlignment="Left" Margin="488,566,0,0" VerticalAlignment="Top" Height="28" Width="286" FontSize="15" Foreground="#FFED4337"/>
         <Canvas x:Name="forgotTAB" Margin="240,160,240,160" Width="800" Height="400" d:IsHidden="True">
             <Canvas.Background>
                 <ImageBrush ImageSource="/tabzxc.png"/>
@@ -59,5 +53,11 @@
                 </Button.Background>
             </Button>
         </Canvas>
+        <Image x:Name="warning" HorizontalAlignment="Left" Height="14" Margin="816,536,0,0" VerticalAlignment="Top" Width="16" Source="/triangle-warning.png" RenderTransformOrigin="-1.316,3.235" MouseEnter="warning_MouseEnter" MouseLeave="warning_MouseLeave"/>
+        <Label x:Name="warningMessage" Content="                           WARNING!&#xA;3 Failed login attempt = 1 minute cooldown&#xA;4 Failed login attempt = 3 minute cooldown&#xA;6 Failed login attempt = Admin warning&#xA;" HorizontalAlignment="Left" Margin="938,432,0,0" VerticalAlignment="Top" FontSize="15" Width="302" Height="97" d:IsHidden="True">
+            <Label.Background>
+                <ImageBrush ImageSource="/pste.png"/>
+            </Label.Background>
+        </Label>
     </Grid>
 </Window>

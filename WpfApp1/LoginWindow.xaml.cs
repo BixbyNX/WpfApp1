@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace WpfApp1
 {
     /// <summary>
-    /// Interaction logic for MessagingWindow.xaml
+    /// Interaction logic for LoginWindow.xaml
     /// </summary>
-    public partial class MessagingWindow : Window
+    public partial class LoginWindow : Window
     {
-        public MessagingWindow()
+        public LoginWindow()
         {
             InitializeComponent();
         }

@@ -1,71 +1,128 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
 using System.Net.Mail;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using MySql.Data.MySqlClient;
-
+using System.Xml.Linq;
+using MySqlX.XDevAPI;
 namespace WpfApp1
 {
     public partial class Window1 : Window
     {
+
+        private string username;
+        private string email;
+        private string branchService;
+        private string personnelType;
+        private string contactNo;
+        private string serialNumber;
+        private string password;
+
         public Window1()
         {
             InitializeComponent();
             verificationTAB.Visibility = Visibility.Hidden;
+            notMatch.Visibility = Visibility.Hidden;
+            inputconfirm.Visibility = Visibility.Hidden;
+            inputpass.Visibility = Visibility.Hidden;
+            incomplete.Visibility = Visibility.Hidden;
         }
 
         Random rand = new Random();
         public int otp;
-        private void btnRegister_Click(object sender, RoutedEventArgs e)
+        private async void btnRegister_Click(object sender, RoutedEventArgs e)
         {
-            verificationTAB.Visibility = Visibility.Visible;
-            string client = emailadd.Text;
+
+            string username = fname.Text;
+            string email = emailadd.Text;
+            string branchService = branch.Text;
+            string personnelType = personneltype.Text;
+            string contactNo = contact.Text;
+            string serialNumber = serialIDNo.Text;
+            string password = passwordb.Password;
 
             try
             {
-                string connstring = "server=localhost; uid=root; pwd=; database=chatifyz";
-                MySqlConnection con = new MySqlConnection(connstring);
+              
 
-                otp = rand.Next(100000, 999999);
+                if (passwordb.Password == "" && confirmpass.Password == "")
+                {
+                    inputconfirm.Visibility = Visibility.Visible;
+                    inputpass.Visibility = Visibility.Visible;
+                    notMatch.Visibility = Visibility.Hidden;
+                    incomplete.Visibility = Visibility.Hidden;
+                }
+                else if (fname.Text == "" || emailadd.Text == "" || branch.Text == "" ||
+                          personneltype.Text == "" || contact.Text == "" || serialIDNo.Text == "")
+                {
+                    incomplete.Visibility = Visibility.Visible;
+                    inputconfirm.Visibility = Visibility.Hidden;
+                    notMatch.Visibility = Visibility.Hidden;
+                    inputpass.Visibility = Visibility.Hidden;
+                }
+                else if (confirmpass.Password == "")
+                {
+                    inputconfirm.Visibility = Visibility.Visible;
+                    notMatch.Visibility = Visibility.Hidden;
+                    inputpass.Visibility = Visibility.Hidden;
+                    incomplete.Visibility = Visibility.Hidden;
+                }
+                else if (passwordb.Password == "")
+                {
+                    inputpass.Visibility = Visibility.Visible;
+                    inputconfirm.Visibility = Visibility.Hidden;
+                    notMatch.Visibility = Visibility.Hidden;
+                    incomplete.Visibility = Visibility.Hidden;
+                }
+                else if (passwordb.Password != confirmpass.Password)
+                {
+                    notMatch.Visibility = Visibility.Visible;
+                    inputpass.Visibility = Visibility.Hidden;
+                    inputconfirm.Visibility = Visibility.Hidden;
+                    incomplete.Visibility = Visibility.Hidden;
+                }
+                else
+                {
+                    string client = emailadd.Text;
+                    verificationTAB.Visibility = Visibility.Visible;
+                    notMatch.Visibility = Visibility.Hidden;
+                    inputpass.Visibility = Visibility.Hidden;
+                    inputconfirm.Visibility = Visibility.Hidden;
+                    incomplete.Visibility = Visibility.Hidden;
 
-                MailMessage msg = new MailMessage();
-                msg.From = new MailAddress("raengbiag@outlook.com");
-                msg.To.Add(emailadd.Text);
-                msg.Subject = ("Verify your Encryptalk account.");
-                msg.Body = ("Hi, " + fname.Text + "!" + "\n" + "\nHere's your verification code: " + otp.ToString() + ". Thank you for using Encryptalk, Happy chatting!");
+                    Console.WriteLine(client);
 
-                SmtpClient smt = new SmtpClient();
-                smt.Host = "smtp-mail.outlook.com";
-                System.Net.NetworkCredential ntcd = new NetworkCredential();
-                ntcd.UserName = "raengbiag@outlook.com";
-                ntcd.Password = "saitama122620";
-                smt.Credentials = ntcd;
-                smt.EnableSsl = true;
-                smt.Port = 587;
-                smt.Send(msg);
+                    try
+                    {
+                        otp = rand.Next(100000, 999999);
 
-                con.Close();
+                        MailMessage msg = new MailMessage();
+                        msg.From = new MailAddress("encryptalk@outlook.com");
+                        msg.To.Add(emailadd.Text);
+                        msg.Subject = ("Activate your Encryptalk account.");
+                        msg.Body = ("Hi, " + fname.Text + "!" + "\n" + "\nHere's your code to activate your account: " + otp.ToString() + ". Thank you for using Encryptalk, Happy chatting!");
 
-                emailShow.Text = (client);
-            }
-            catch (Exception ex)
+                        SmtpClient smt = new SmtpClient();
+                        smt.Host = "smtp-mail.outlook.com";
+                        NetworkCredential ntcd = new NetworkCredential();
+                        ntcd.UserName = "encryptalk@outlook.com";
+                        ntcd.Password = "pritongman0k!";
+                        smt.Credentials = ntcd;
+                        smt.EnableSsl = true;
+                        smt.Port = 587;
+                        smt.Send(msg);
+
+                        emailShow.Text = (client);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("An error occurred during registration: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+} catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("An error occurred during registration: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-        
         private void btnPrivacyPolicy_Click(object sender, RoutedEventArgs e)
         {
             PrivacyPolicyWindow window = new PrivacyPolicyWindow();
@@ -73,43 +130,21 @@ namespace WpfApp1
             window.Show();
         }
 
-        private void btnSubmitOTP_Click(object sender, object e)
+        private async void btnSubmitOTP_Click(object sender, object e)
         {
             if (otp.ToString().Equals(otpverify.Text))
             {
                 try
                 {
-                    string connstring = "server=localhost; uid=root; pwd=; database=chatifyz";
-                    MySqlConnection con = new MySqlConnection(connstring);
+                    AuthServer server = new AuthServer();
+                    string response = await server.Register(username, email, branchService, personnelType, contactNo, serialNumber, password);
 
-                    con.Open();
-
-                    string username = fname.Text;
-                    string email = emailadd.Text;
-                    string branchService = branch.Text;
-                    string personnelType = personneltype.Text;
-                    string contactNo = contact.Text;
-                    string serialNumber = serialIDNo.Text;
-                    string password = passwordb.Password;
-
-                    string query = "INSERT INTO users (Name, Email, Branch_of_Service, Personnel_Type, Contact_No, Serial_ID_No, Password)"
-                        + "VALUES (@username, @email, @branchService, @personnelType, @contactNo, @serialNumber, @password)";
-                    MySqlCommand cmd = new MySqlCommand(query, con);
-                    cmd.Parameters.AddWithValue("@username", username);
-                    cmd.Parameters.AddWithValue("@email", email);
-                    cmd.Parameters.AddWithValue("@branchService", branchService);
-                    cmd.Parameters.AddWithValue("@personnelType", personnelType);
-                    cmd.Parameters.AddWithValue("@contactNo", contactNo);
-                    cmd.Parameters.AddWithValue("@serialNumber", serialNumber);
-                    cmd.Parameters.AddWithValue("@password", password);
-
-                    int rowsAffected = cmd.ExecuteNonQuery();
+                    Console.WriteLine(response);
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-                
             }
             else
             {
